@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
   <title>Countdown</title>
@@ -12,11 +12,21 @@
 <body>
   <div id="countdown" style="font-size: 4rem;">Loading...</div>
   <div id="menu">
-    <button onclick="toggleFontSize(+1)">Font Size +</button>
-    <button onclick="toggleFontSize(-1)">Font Size -</button>
-    <button onclick="toggleSpaces()">Toggle Spaces</button>
-    <button onclick="toggleSeconds()">Toggle Seconds</button>
-    <button onclick="setCustomDate()">Set a Custom Date</button>
+    <div class="row">
+      <button onclick="toggleFontSize(+1)">Font Size +</button>
+      <button onclick="toggleFontSize(-1)">Font Size -</button>
+    </div>
+    <div class="row">
+      <button onclick="toggleSpaces()">Toggle Spaces</button>
+      <button onclick="toggleSeconds()">Toggle Seconds</button>
+      <button onclick="toggleMonospace()">Toggle Monospaced Font</button>
+      <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </div>
+    <div class="row">
+      <input type="date" id="datePicker">
+      <input type="time" id="timePicker">
+      <button onclick="setCustomDate()">Set a Custom Date</button>
+    </div>
   </div>
 </body>
 

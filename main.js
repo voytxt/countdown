@@ -1,9 +1,14 @@
 const countdown = document.getElementById('countdown');
 const menu = document.getElementById('menu');
+const customDate = document.getElementById('datePicker');
+const customTime = document.getElementById('timePicker');
 
 let endDate = new Date('June 30 2021 15:00');
 let divideTimeBy = 1;
 let splitChar = ' ';
+
+customDate.value = new Date().toLocaleDateString().split('/').reverse().join('-');
+customTime.value = new Date().toLocaleTimeString([], { timeStyle: 'short' });
 
 const display = () => {
   const now = Date.now();
@@ -20,21 +25,25 @@ const display = () => {
 const toggleFontSize = (number) => {
   countdown.style.fontSize = +countdown.style.fontSize.split('rem')[0] + number + 'rem';
 };
-const toggleSeconds = () => {
-  divideTimeBy = divideTimeBy === 1 ? 1000 : 1;
-};
 const toggleSpaces = () => {
   splitChar = splitChar === ' ' ? '' : ' ';
 };
+const toggleSeconds = () => {
+  divideTimeBy = divideTimeBy === 1 ? 1000 : 1;
+};
+const toggleMonospace = () => {
+  countdown.classList.toggle('monospace');
+};
+const toggleDarkMode = () => {
+  document.body.classList.toggle('dark');
+};
 const setCustomDate = () => {
-  const customDate = new Date(prompt(`Set a custom date (e.g. June 6 2021 15:24)\nCurrent date is ${endDate.toDateString()}`));
-  if (!isNaN(customDate) && customDate !== '') endDate = customDate;
-  else alert('The date was not valid');
+  endDate = new Date(`${customDate.value} ${customTime.value}`);
 };
 
 document.addEventListener('dblclick', (e) => {
-  if (e.target.tagName === 'BUTTON') return;
-  menu.style.display = menu.style.display === 'none' ? 'flex' : 'none';
+  if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') return;
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
 });
 
 requestAnimationFrame(display);
