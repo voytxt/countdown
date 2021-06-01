@@ -1,3 +1,5 @@
+@import url('http://fonts.cdnfonts.com/css/segoe-ui-4');
+
 body {
   height: 100vh;
   margin: 0;
@@ -6,6 +8,7 @@ body {
   align-items: center;
   justify-content: center;
   user-select: none;
+  overflow: hidden;
 }
 .dark {
   background-color: black;
@@ -35,14 +38,17 @@ body {
 }
 #menu .row button {
   padding: 1rem;
-  background-color: lightblue;
+  background-color: #bbf7d0; /* from tailwind: colors.green.200 */
   border: 0;
   border-radius: 2px;
+}
+#menu .row button:active {
+  background-color: #86efac; /* from tailwind: colors.green.300 */
 }
 #menu .row input {
   padding: 1rem;
   width: fit-content;
-  background-color: lightblue;
+  background-color: #bbf7d0;
   border: 0;
   border-radius: 2px;
 }

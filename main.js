@@ -3,12 +3,14 @@ const menu = document.getElementById('menu');
 const customDate = document.getElementById('datePicker');
 const customTime = document.getElementById('timePicker');
 
-let endDate = new Date('June 30 2021 15:00');
+const currentYear = new Date().getFullYear();
+let endDate = new Date(`June 30 ${currentYear} 13:00`);
+if (endDate < new Date()) endDate.setFullYear(currentYear + 1);
 let divideTimeBy = 1;
 let splitChar = ' ';
 
 customDate.value = new Date().toLocaleDateString().split('/').reverse().join('-');
-customTime.value = new Date().toLocaleTimeString([], { timeStyle: 'short' });
+customTime.value = new Date().toLocaleTimeString({ timeStyle: 'short' });
 
 const display = () => {
   const now = Date.now();
@@ -31,7 +33,7 @@ const toggleSpaces = () => {
 const toggleSeconds = () => {
   divideTimeBy = divideTimeBy === 1 ? 1000 : 1;
 };
-const toggleMonospace = () => {
+const toggleFont = () => {
   countdown.classList.toggle('monospace');
 };
 const toggleDarkMode = () => {
