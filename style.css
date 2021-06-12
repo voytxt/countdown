@@ -1,4 +1,4 @@
-@import url('http://fonts.cdnfonts.com/css/segoe-ui-4');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 body {
   height: 100vh;
@@ -16,7 +16,7 @@ body {
 }
 
 #countdown {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', 'Open Sans', sans-serif;
   text-align: center;
 }
 .monospace {
