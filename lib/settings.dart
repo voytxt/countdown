@@ -1,5 +1,6 @@
 import 'package:countdown/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     // show status bar and navigation bar
-    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
 
     return Scaffold(
       appBar: AppBar(
@@ -86,6 +87,9 @@ class _SettingsState extends State<Settings> {
             '/countdown',
             arguments: CountdownArguments(_endDateTime),
           );
+
+          // hide status bar and navigation bar
+          SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
         },
         tooltip: 'Start',
         child: const Icon(Icons.play_arrow),

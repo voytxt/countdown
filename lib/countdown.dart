@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:countdown/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Countdown extends StatefulWidget {
   const Countdown({Key? key}) : super(key: key);
@@ -13,19 +14,21 @@ class Countdown extends StatefulWidget {
 
 class _CountdownState extends State<Countdown> {
   String _countdown = '';
+  Timer? _timer;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Fix this not working when going back to the previous route
-    // hide status bar and navigation bar
-    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-
     final arguments = ModalRoute.of(context)!.settings.arguments as CountdownArguments;
 
-    Timer.periodic(const Duration(milliseconds: 100), (Timer timer) {
-      // Cancel the timer after we leave the countdown screen
+    // if the periodic timer already exists, don't create a new one
+    _timer ??= Timer.periodic(const Duration(milliseconds: 100), (_) {
       if (!mounted) {
-        timer.cancel();
+        // cancel the timer after we leave the countdown screen
+        _timer?.cancel();
+
+        // show status bar and navigation bar
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+
         return;
       }
 
@@ -36,7 +39,7 @@ class _CountdownState extends State<Countdown> {
         setState(() => _countdown = displayNumber.toString());
       } else {
         setState(() => _countdown = 'DONE');
-        timer.cancel();
+        _timer?.cancel();
       }
     });
 
