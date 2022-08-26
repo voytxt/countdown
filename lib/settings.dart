@@ -45,7 +45,7 @@ class _SettingsState extends State<Settings> {
     }
   }
 
-  String _getMonthName(int index) => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][index];
+  String _getMonthName(int index) => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][index - 1];
 
   @override
   Widget build(BuildContext context) {
