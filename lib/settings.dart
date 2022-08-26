@@ -58,26 +58,41 @@ class _SettingsState extends State<Settings> {
         title: const Text('Precise Countdown'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('End Date & Time'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: _selectDate,
-                  child: Text('${_endDateTime.day} ${_getMonthName(_endDateTime.month)} ${_endDateTime.year}'),
-                ),
-                const SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: _selectTime,
-                  child: Text('${_endDateTime.hour.toString().padLeft(2, '0')}:${_endDateTime.minute.toString().padLeft(2, '0')}'),
-                ),
-              ],
-            ),
-          ],
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text('End Date & Time'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: _selectDate,
+                    child: Text('${_endDateTime.day} ${_getMonthName(_endDateTime.month)} ${_endDateTime.year}'),
+                  ),
+                  const SizedBox(width: 8),
+                  ElevatedButton(
+                    onPressed: _selectTime,
+                    child: Text('${_endDateTime.hour.toString().padLeft(2, '0')}:${_endDateTime.minute.toString().padLeft(2, '0')}'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              const Text('Dark Mode'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: () {
+                      MyApp.of(context).changeTheme(MyApp.of(context).getTheme() == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
+                    },
+                    child: const Text('Change Theme'),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
